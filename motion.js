@@ -59,6 +59,8 @@
   }, { rootMargin: '100px' }).observe(world);
 
   if (!reduced.matches) {
+    const showEntrance = () => {
+      if (reduced.matches) return;
     document.querySelectorAll('.title-line > *').forEach((line, i) => {
       line.animate([{ transform: 'translateY(105%)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }], {
         duration: 1200, delay: 100 + i * 180, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards'
@@ -69,6 +71,10 @@
         duration: 900, delay: 500 + i * 130, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards'
       });
     });
+    };
+    if (document.documentElement.dataset.splash === 'pending') {
+      document.addEventListener('triyuta:splash-end', showEntrance, { once: true });
+    } else showEntrance();
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;

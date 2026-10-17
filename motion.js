@@ -72,9 +72,9 @@
       });
     });
     };
-    if (document.documentElement.dataset.splash === 'pending') {
-      document.addEventListener('triyuta:splash-end', showEntrance, { once: true });
-    } else showEntrance();
+    // The splash already reveals the rendered hero. A second entrance would
+    // hide visible text again as the overlay closes and look like a reload.
+    if (document.documentElement.dataset.splash !== 'pending') showEntrance();
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;

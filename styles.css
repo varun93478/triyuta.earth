@@ -285,3 +285,6 @@ html[data-splash="pending"] #brand-splash { display: flex !important; }
 @media (prefers-reduced-motion: reduce) {
   #brand-splash { display: none !important; }
 }
+
+/* Keep the page width stable when the introduction releases the scroll lock. */
+html { scrollbar-gutter: stable; }
